@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Roblox chat tester 18+</title>
+<style>
+:root{color-scheme:light dark;--bg:#fff;--fg:#111;--mut:#555;--bd:#c8c8cc;--box:#f2f2f5}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--fg:#f2f2f2;--mut:#aaa;--bd:#3a3a3e;--box:#1c1c1e}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:640px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 24px max(16px,env(safe-area-inset-left))}
+label,.lbl{display:block;font-size:15px;font-weight:600;color:var(--mut);margin:12px 0 6px}
+input{width:100%;min-height:48px;padding:10px 12px;font:inherit;font-size:17px;color:var(--fg);background:var(--bg);border:1px solid var(--bd);border-radius:10px;-webkit-appearance:none;appearance:none}
+input:focus{outline:2px solid #0a84ff;outline-offset:1px}
+#out{min-height:48px;padding:12px;background:var(--box);border:1px solid var(--bd);border-radius:10px;font:16px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
+</style>
+</head>
+<body>
+<main>
+<label for="in">User input</label>
+<input id="in" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done">
+<div class="lbl" id="outlbl">Projected output</div>
+<div id="out" role="status" aria-live="polite" aria-labelledby="outlbl"></div>
+</main>
+<script id="engine">
+window.ENGINE =
+/*ENGINE-BEGIN*/
+(function () {
+'use strict';
+/* LDNOOBW English list (CC BY 4.0), inlined from data/en.txt. Data only; never rendered. */
+const LDNOOBW_EN = ["2g1c","2 girls 1 cup","acrotomophilia","alabama hot pocket","alaskan pipeline","anal","anilingus","anus","apeshit","arsehole","ass","asshole","assmunch","auto erotic","autoerotic","babeland","baby batter","baby juice","ball gag","ball gravy","ball kicking","ball licking","ball sack","ball sucking","bangbros","bangbus","bareback","barely legal","barenaked","bastard","bastardo","bastinado","bbw","bdsm","beaner","beaners","beaver cleaver","beaver lips","beastiality","bestiality","big black","big breasts","big knockers","big tits","bimbos","birdlock","bitch","bitches","black cock","blonde action","blonde on blonde action","blowjob","blow job","blow your load","blue waffle","blumpkin","bollocks","bondage","boner","boob","boobs","booty call","brown showers","brunette action","bukkake","bulldyke","bullet vibe","bullshit","bung hole","bunghole","busty","butt","buttcheeks","butthole","camel toe","camgirl","camslut","camwhore","carpet muncher","carpetmuncher","chocolate rosebuds","cialis","circlejerk","cleveland steamer","clit","clitoris","clover clamps","clusterfuck","cock","cocks","coprolagnia","coprophilia","cornhole","coon","coons","creampie","cum","cumming","cumshot","cumshots","cunnilingus","cunt","darkie","date rape","daterape","deep throat","deepthroat","dendrophilia","dick","dildo","dingleberry","dingleberries","dirty pillows","dirty sanchez","doggie style","doggiestyle","doggy style","doggystyle","dog style","dolcett","domination","dominatrix","dommes","donkey punch","double dong","double penetration","dp action","dry hump","dvda","eat my ass","ecchi","ejaculation","erotic","erotism","escort","eunuch","fag","faggot","fecal","felch","fellatio","feltch","female squirting","femdom","figging","fingerbang","fingering","fisting","foot fetish","footjob","frotting","fuck","fuck buttons","fuckin","fucking","fucktards","fudge packer","fudgepacker","futanari","gangbang","gang bang","gay sex","genitals","giant cock","girl on","girl on top","girls gone wild","goatcx","goatse","god damn","gokkun","golden shower","goodpoop","goo girl","goregasm","grope","group sex","g-spot","guro","hand job","handjob","hard core","hardcore","hentai","homoerotic","honkey","hooker","horny","hot carl","hot chick","how to kill","how to murder","huge fat","humping","incest","intercourse","jack off","jail bait","jailbait","jelly donut","jerk off","jigaboo","jiggaboo","jiggerboo","jizz","juggs","kike","kinbaku","kinkster","kinky","knobbing","leather restraint","leather straight jacket","lemon party","livesex","lolita","lovemaking","make me come","male squirting","masturbate","masturbating","masturbation","menage a trois","milf","missionary position","mong","motherfucker","mound of venus","mr hands","muff diver","muffdiving","nambla","nawashi","negro","neonazi","nigga","nigger","nig nog","nimphomania","nipple","nipples","nsfw","nsfw images","nude","nudity","nutten","nympho","nymphomania","octopussy","omorashi","one cup two girls","one guy one jar","orgasm","orgy","paedophile","paki","panties","panty","pedobear","pedophile","pegging","penis","phone sex","piece of shit","pikey","pissing","piss pig","pisspig","playboy","pleasure chest","pole smoker","ponyplay","poof","poon","poontang","punany","poop chute","poopchute","porn","porno","pornography","prince albert piercing","pthc","pubes","pussy","queaf","queef","quim","raghead","raging boner","rape","raping","rapist","rectum","reverse cowgirl","rimjob","rimming","rosy palm","rosy palm and her 5 sisters","rusty trombone","sadism","santorum","scat","schlong","scissoring","semen","sex","sexcam","sexo","sexy","sexual","sexually","sexuality","shaved beaver","shaved pussy","shemale","shibari","shit","shitblimp","shitty","shota","shrimping","skeet","slanteye","slut","s&m","smut","snatch","snowballing","sodomize","sodomy","spastic","spic","splooge","splooge moose","spooge","spread legs","spunk","strap on","strapon","strappado","strip club","style doggy","suck","sucks","suicide girls","sultry women","swastika","swinger","tainted love","taste my","tea bagging","threesome","throating","thumbzilla","tied up","tight white","tit","tits","titties","titty","tongue in a","topless","tosser","towelhead","tranny","tribadism","tub girl","tubgirl","tushy","twat","twink","twinkie","two girls one cup","undressing","upskirt","urethra play","urophilia","vagina","venus mound","viagra","vibrator","violet wand","vorarephilia","voyeur","voyeurweb","voyuer","vulva","wank","wetback","wet dream","white power","whore","worldsex","wrapping men","wrinkled starfish","xx","xxx","yaoi","yellow showers","yiffy","zoophilia","🖕"];
+const SLUR_STUBS = ['SLUR_STUB_1', 'SLUR_STUB_2'];          // placeholder slots, kept from v1
+const SEXUAL_STUBS = ['SEXUAL_STUB_1'];
+const CUSTOM_MILD = [];
+const CUSTOM_STRONG = [];
+const CUSTOM_SLUR = [];
+const CUSTOM_SEXUAL = [];
+const MILD = ['damn', 'dammit', 'damnit', 'crap', 'crappy', 'hell', 'bloody', 'bugger', 'piss', 'pissed',
+  'butt', 'arse', 'frick', 'fricking', 'freaking', 'effing', 'badass', 'god damn', 'goddamn', 'jeez'];
+const STRONG_FROM_LIST = ['apeshit', 'arsehole', 'ass', 'asshole', 'assmunch', 'bastard', 'bastardo', 'bitch', 'bitches',
+  'bollocks', 'bullshit', 'clusterfuck', 'cunt', 'dick', 'fuck', 'fuckin', 'fucking', 'fucktards', 'motherfucker',
+  'piece of shit', 'shit', 'shitty', 'shitblimp', 'tosser', 'twat', 'wank', 'bung hole', 'bunghole', 'butthole',
+  'pissing', 'piss pig', 'pisspig', 'jack off', 'jerk off', '\u{1F595}'];
+const STRONG_EXTRA = ['fk', 'fking', 'fkin', 'fkn', 'fck', 'fcking', 'fckn', 'fcuk', 'fuk', 'fuking', 'fukin', 'phuck',
+  'phuk', 'fuq', 'sht', 'shyt', 'biatch', 'biotch', 'azz', 'mf', 'mofo', 'stfu', 'wtf', 'tf', 'gtfo', 'omfg', 'lmfao',
+  'dumbass', 'jackass', 'smartass', 'fatass', 'shithead', 'dipshit', 'horseshit', 'fuckface', 'fuckhead', 'fucker',
+  'fuckers', 'dickhead', 'motherfucking', 'motherfuckin', 'bs'];
+const SLUR_FROM_LIST = ['beaner', 'beaners', 'bulldyke', 'carpet muncher', 'carpetmuncher', 'coon', 'coons', 'darkie',
+  'fag', 'faggot', 'fudge packer', 'fudgepacker', 'honkey', 'jigaboo', 'jiggaboo', 'jiggerboo', 'kike', 'negro',
+  'nigga', 'nigger', 'nig nog', 'paki', 'pikey', 'poof', 'raghead', 'shemale', 'slanteye', 'spic', 'towelhead',
+  'tranny', 'wetback', 'spastic', 'mong', 'white power', 'neonazi', 'swastika'];
+const SLUR_EXTRA = ['retard', 'retarded', 'niga', 'nibba', 'fagot', 'faggit', 'heil hitler', 'sieg heil'];
+const THREAT_FROM_LIST = ['how to kill', 'how to murder'];
+const EXCLUDE = ['big black', 'hot chick', 'girl on', 'tied up', 'taste my', 'tongue in a', 'tight white', 'jelly donut',
+  'twinkie', 'domination', 'escort', 'xx', 'suck', 'sucks', 'huge fat', 'eunuch', 'blonde action', 'brunette action',
+  'girls gone wild', 'pleasure chest', 'tainted love', 'hard core', 'hardcore', 'playboy', 'santorum', 'goodpoop',
+  'scat', 'snatch', 'boner', 'raging boner'];
+const SEXUAL_EXTRA = ['noods', 'nudes', 'nood', 'sexting', 'sext', 'horni', 'hornyy', 'thot', 'porn', 'p0rn', 'onlyfans', 'oder', 'oders'];
+const RAPE_TERMS = ['rape', 'raping', 'rapist', 'date rape', 'daterape'];
+const SAFE_WORDS = ['butter', 'buttery', 'butters', 'button', 'buttons', 'buttress', 'cumin', 'spicy', 'scatter',
+  'cocky', 'cocker', 'cockpit', 'cocktail', 'cockroach', 'dickens', 'hello', 'shell', 'shellfish', 'titan', 'titanic',
+  'class', 'classic', 'assistant', 'assist', 'assassin', 'passion', 'grass', 'glass', 'scunthorpe', 'analysis',
+  'canal', 'therapist', 'grape', 'essex', 'sussex', 'hellooo', 'helloo', 'bass', 'mass', 'pass', 'shitake', 'shiitake',
+  'pussycat', 'pussywillow', 'hancock', 'peacock', 'buttocks'];
+function loadLdnoobw() {
+  return LDNOOBW_EN.slice();
+}
+function build() {
+  const raw = loadLdnoobw();
+  const set = (a) => new Set(a.map(s => s.toLowerCase()));
+  const strong = set(STRONG_FROM_LIST), slur = set(SLUR_FROM_LIST), threat = set(THREAT_FROM_LIST),
+    excl = set(EXCLUDE), mild = set(MILD), rape = set(RAPE_TERMS);
+  const tiers = { mild: [], strong: [], slur: [], sexual: [], threat: [] };
+  const seen = new Set();
+  const add = (tier, w) => { w = w.toLowerCase(); if (!seen.has(w)) { seen.add(w); tiers[tier].push(w); } };
+  MILD.concat(CUSTOM_MILD).forEach(w => add('mild', w));
+  for (const w of raw) {
+    if (excl.has(w) || mild.has(w)) continue;
+    if (slur.has(w)) add('slur', w);
+    else if (strong.has(w)) add('strong', w);
+    else if (threat.has(w)) add('threat', w);
+    else if (rape.has(w)) add('sexual', w);
+    else add('sexual', w);
+  }
+  STRONG_FROM_LIST.concat(STRONG_EXTRA, CUSTOM_STRONG).forEach(w => add('strong', w));
+  SLUR_FROM_LIST.concat(SLUR_EXTRA, SLUR_STUBS, CUSTOM_SLUR).forEach(w => add('slur', w));
+  SEXUAL_EXTRA.concat(RAPE_TERMS, SEXUAL_STUBS, CUSTOM_SEXUAL).forEach(w => add('sexual', w));
+  THREAT_FROM_LIST.forEach(w => add('threat', w));
+  return tiers;
+}
+const TIERS = build();
+const CITIES = ['sydney', 'melbourne', 'brisbane', 'perth', 'adelaide', 'hobart', 'darwin', 'canberra', 'parramatta',
+  'penrith', 'bondi', 'chatswood', 'blacktown', 'liverpool', 'campbelltown', 'hornsby', 'manly', 'cronulla',
+  'newcastle', 'wollongong', 'geelong', 'ballarat', 'bendigo', 'gold coast', 'sunshine coast', 'townsville', 'cairns',
+  'toowoomba', 'auckland', 'wellington', 'christchurch', 'london', 'manchester', 'new york', 'los angeles', 'chicago',
+  'toronto', 'vancouver', 'dublin', 'singapore', 'castle hill', 'baulkham hills', 'bankstown', 'strathfield', 'ryde',
+  'epping', 'hurstville', 'kogarah', 'sutherland', 'miranda', 'dee why', 'mosman', 'randwick', 'coogee', 'marrickville'];
+const STATES = ['nsw', 'vic', 'qld', 'wa', 'sa', 'tas', 'act', 'nt', 'new south wales', 'victoria', 'queensland', 'tasmania'];
+const FIRST_NAMES = ['james', 'john', 'robert', 'michael', 'william', 'david', 'richard', 'joseph', 'thomas', 'charles',
+  'daniel', 'matthew', 'anthony', 'mark', 'steven', 'paul', 'andrew', 'joshua', 'kevin', 'brian', 'jack', 'oliver',
+  'noah', 'liam', 'lucas', 'ethan', 'mason', 'leo', 'henry', 'charlie', 'mary', 'patricia', 'jennifer', 'linda',
+  'elizabeth', 'sarah', 'jessica', 'emily', 'emma', 'olivia', 'ava', 'mia', 'isla', 'grace', 'chloe', 'amelia',
+  'charlotte', 'sophie', 'ruby', 'zoe', 'lily', 'ella', 'harper', 'evie', 'priya', 'aarav', 'mohammed', 'ali', 'wei'];
+const OFF_PLATFORM_APPS = ['discord', 'dizcord', 'diskord', 'discrd', 'snapchat', 'instagram', 'tiktok', 'whatsapp',
+  'telegram', 'kik', 'skype', 'facebook', 'messenger', 'wechat', 'signal app', 'line app', 'threads app', 'guilded'];
+const OFF_PLATFORM_ALIASES = ['snap', 'sc', 'insta', 'ig', 'fb', 'dc', 'tt', 'wa', 'yt', 'youtube', 'twitch', 'twitter',
+  'x', 'steam', 'psn', 'xbox', 'reddit', 'tele', 'whats app', 'whatsap'];
+const W = { TIERS, SAFE_WORDS, CITIES, STATES, FIRST_NAMES, OFF_PLATFORM_APPS, OFF_PLATFORM_ALIASES,
+  SLUR_STUBS, SEXUAL_STUBS, CUSTOM_MILD, CUSTOM_STRONG, CUSTOM_SLUR, CUSTOM_SEXUAL,
+  SOURCE: { url: 'https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words', licence: 'CC BY 4.0',
+    commit: '5faf2ba42d7b1c0977169ec3611df25a3c08eb13' } };
+const HISTORY_WINDOW = 5; // REPORTED (Research Bot, unverified): the PII check reads about the last 5 messages
+function normBand(b) {
+  const s = String(b || '13-17').toLowerCase().replace(/\s/g, '');
+  if (['u13', 'under13', '<13', 'under-13', '9-12', '5-8', 'kid'].includes(s)) return 'u13';
+  if (['18+', '17+', 'adult', '18plus', '21+', '18-20'].includes(s)) return '18+';
+  return '13-17'; // '13-17', '13to17', 'teen', '13-15', '16-17'
+}
+const LEET = { '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '8': 'b', '9': 'g', '@': 'a', '$': 's', '!': 'i', '|': 'i', '+': 't' };
+const CLASS = { a: 'a4@', e: 'e3', i: 'i1!|', l: 'l1|', o: 'o0', s: 's5$z', t: 't7+', b: 'b8', g: 'g9' };
+const SUFFIX = '(?:s|es|ed|er|ers|ing|ings|in|n|y|ie|ies|z|a|ah|az)?';
+const esc = (c) => c.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+function letterClass(ch) {
+  const set = (CLASS[ch] || ch) + '*';
+  return '[' + set.split('').map(esc).join('') + ']+';
+}
+function wordRe(word, withSuffix) {
+  return new RegExp('^' + word.split('').map(letterClass).join('') + (withSuffix ? SUFFIX : '') + '$');
+}
+function tokNorm(raw) { return raw.toLowerCase().replace(/['\u2019]/g, '').replace(/[^a-z0-9@$*!|+\u{1F595}]/gu, ''); }
+function plainLetters(raw) { return raw.toLowerCase().replace(/[^a-z]/g, ''); }
+function decodeTok(raw) {
+  const t = raw.toLowerCase().replace(/['\u2019]/g, '');
+  const letters = (t.match(/[a-z]/g) || []).length, digits = (t.match(/[0-9]/g) || []).length;
+  let out = '';
+  for (const c of t) {
+    if (/[a-z]/.test(c)) out += c;
+    else if (/[0-9]/.test(c)) out += ((letters > digits || (letters === digits && /^[a-z]/.test(t))) && LEET[c]) ? LEET[c] : c;
+    else if (LEET[c] && letters > 0) out += LEET[c];
+    else if (c === '*') out += '*';
+  }
+  return out;
+}
+const collapse = (s) => s.replace(/([a-z])\1+/g, '$1');
+const SAFE = new Set(W.SAFE_WORDS);
+const ENTRIES = [];
+for (const tier of Object.keys(W.TIERS)) {
+  for (const entry of W.TIERS[tier]) {
+    if ([...entry].length === 1 && /\p{Extended_Pictographic}/u.test(entry)) { ENTRIES.push({ tier, emoji: entry }); continue; }
+    const words = entry.toLowerCase().replace(/[^a-z0-9_ ]/g, '').split(/\s+/).filter(Boolean);
+    if (!words.length) continue;
+    ENTRIES.push({ tier, n: words.length, res: words.map((w, i) => wordRe(w, i === words.length - 1)) });
+  }
+}
+const TIER_CAT = { mild: 'profanity:mild', strong: 'profanity:strong', slur: 'hate:slur', sexual: 'sexual:explicit_term', threat: 'threat:violence' };
+function tokenize(text) {
+  const toks = [];
+  const re = /[\p{L}\p{N}@$*!|+'\u2019\u{1F595}]+/gu;
+  let m;
+  while ((m = re.exec(text))) {
+    let s = m.index, e = s + m[0].length;
+    while (s < e && /[!'\u2019+]/.test(text[s])) s++;
+    while (e > s && /[!'\u2019+]/.test(text[e - 1])) e--;
+    if (e > s) toks.push({ start: s, end: e, raw: text.slice(s, e) });
+  }
+  return toks;
+}
+function mergedRuns(text, toks) {
+  const runs = [];
+  let i = 0;
+  while (i < toks.length) {
+    let j = i;
+    while (j + 1 < toks.length && [...toks[j].raw].length === 1 && [...toks[j + 1].raw].length === 1 &&
+      /^[\s.\-_,*~]{1,3}$/.test(text.slice(toks[j].end, toks[j + 1].start))) j++;
+    if (j - i >= 2 && [...toks[i].raw].length === 1) {
+      runs.push({ start: toks[i].start, end: toks[j].end, raw: toks.slice(i, j + 1).map(t => t.raw).join(''), from: i, to: j });
+      i = j + 1;
+    } else i++;
+  }
+  return runs;
+}
+function hasRealLetter(raw) { return /[a-z]/i.test(raw); }
+function tokenMatches(raw, allowTiers) {
+  const n = tokNorm(raw);
+  if (!n || !hasRealLetter(raw)) return null;
+  if (SAFE.has(plainLetters(raw))) return null;
+  if (n.includes('*') && (n.match(/[a-z]/g) || []).length < 2) return null;
+  for (const e of ENTRIES) {
+    if (e.emoji || e.n !== 1) continue;
+    if (allowTiers && !allowTiers.includes(e.tier)) continue;
+    if (e.res[0].test(n)) return e.tier;
+  }
+  return null;
+}
+function findWordHits(text, toks) {
+  const hits = []; // {start,end,cat,tier,toks:[i..]}
+  const covered = new Set();
+  const push = (s, e, tier, idx) => { hits.push({ start: s, end: e, tier, cat: TIER_CAT[tier], idx }); idx.forEach(i => covered.add(i)); };
+  for (const e of ENTRIES) {
+    if (e.emoji || e.n < 2) continue;
+    for (let i = 0; i + e.n <= toks.length; i++) {
+      let ok = true;
+      for (let k = 0; k < e.n && ok; k++) ok = !SAFE.has(plainLetters(toks[i + k].raw)) && e.res[k].test(tokNorm(toks[i + k].raw));
+      if (ok) { const idx = []; for (let k = 0; k < e.n; k++) idx.push(i + k); push(toks[i].start, toks[i + e.n - 1].end, e.tier, idx); }
+    }
+  }
+  for (const r of mergedRuns(text, toks)) {
+    let done = false;
+    for (let len = r.to - r.from + 1; len >= 3 && !done; len--) {
+      for (let a = r.from; a + len - 1 <= r.to && !done; a++) {
+        const b = a + len - 1;
+        const t = tokenMatches(toks.slice(a, b + 1).map(x => x.raw).join(''));
+        const idx = []; for (let k = a; k <= b; k++) idx.push(k);
+        if (t && !idx.some(i => covered.has(i))) { push(toks[a].start, toks[b].end, t, idx); done = true; }
+      }
+    }
+  }
+  toks.forEach((tk, i) => {
+    if (covered.has(i)) return;
+    const t = tokenMatches(tk.raw);
+    if (t) push(tk.start, tk.end, t, [i]);
+  });
+  for (let i = 0; i + 1 < toks.length; i++) {
+    if (covered.has(i) || covered.has(i + 1)) continue;
+    const a = toks[i], b = toks[i + 1];
+    if (a.raw.length > 3 || b.raw.length > 3 || !/^[\s.\-_*]{1,2}$/.test(text.slice(a.end, b.start))) continue;
+    const t = tokenMatches(a.raw + b.raw, ['strong', 'slur', 'sexual']);
+    if (t) push(a.start, b.end, t, [i, i + 1]);
+  }
+  for (const e of ENTRIES) {
+    if (!e.emoji) continue;
+    let p = text.indexOf(e.emoji);
+    while (p >= 0) { hits.push({ start: p, end: p + e.emoji.length, tier: e.tier, cat: TIER_CAT[e.tier], idx: [] }); p = text.indexOf(e.emoji, p + 1); }
+  }
+  return hits;
+}
+function buildPhrase(units) { // units: [{start,end,raw}]
+  let s = ''; const map = [];
+  units.forEach((u, i) => {
+    const d = collapse(decodeTok(u.raw));
+    if (!d) return;
+    if (s) { s += ' '; map.push(-1); }
+    for (let k = 0; k < d.length; k++) { s += d[k]; map.push(i); }
+  });
+  return { s, map, units };
+}
+function phraseUnitsVariants(text, toks) {
+  const runs = mergedRuns(text, toks);
+  const variants = [buildPhrase(toks)];
+  if (runs.length) {
+    const u = []; let i = 0;
+    while (i < toks.length) { const r = runs.find(r => r.from === i); if (r) { u.push(r); i = r.to + 1; } else { u.push(toks[i]); i++; } }
+    variants.push(buildPhrase(u));
+  }
+  return variants;
+}
+function P(src) { return new RegExp('(?:^| )(' + collapse(src) + ')(?= |$)', 'g'); }
+function phraseHits(variants, rules) {
+  const out = [];
+  for (const v of variants) {
+    for (const r of rules) {
+      r.re.lastIndex = 0; let m;
+      while ((m = r.re.exec(v.s))) {
+        const gs = m.index + m[0].length - m[1].length, ge = gs + m[1].length - 1;
+        let a = v.map[gs], b = v.map[ge];
+        if (a < 0 || b < 0 || a === undefined || b === undefined) continue;
+        out.push({ start: v.units[a].start, end: v.units[b].end, cat: r.cat });
+        if (m[1].length === 0) r.re.lastIndex++;
+      }
+    }
+  }
+  return out;
+}
+const YOU = '(?:you|u|ya|yu|ur|youre|your|yourself)';
+const YOUSELF = '(?:yourself|urself|ur self|your self|yourselves|yoself)';
+const SELF_HARM_RULES = [
+  { re: P('kys|kys now|kill ' + YOUSELF + '|go kill ' + YOUSELF + '|neck ' + YOUSELF + '|end ' + YOUSELF + '|unalive ' + YOUSELF + '|(?:go|just) die|' + YOU + ' should (?:die|kill ' + YOUSELF + '|end it)|end (?:your|ur) life|drink bleach'), cat: 'self_harm:encouragement' },
+  { re: P('kms|kill myself|unalive myself|(?:i want to|i wanna|im going to|im gonna|i will|ima) (?:die|end it|end it all|kill myself|unalive myself)|suicide|suicidal|cut myself|self harm'), cat: 'self_harm:ideation' },
+];
+const THREAT_RULES = [
+  { re: P('(?:i know|ik) where ' + YOU + ' live|(?:find|hunt|track) ' + YOU + ' (?:down|irl|in real life)|(?:dox|swat) ' + YOU + '|(?:kil|hurt|stab|shoot|beat up|murder|find) ' + YOU + ' (?:irl|in real life|at school|at ur house|at your house)|(?:kil|hurt|stab|shoot) (?:your|ur) (?:family|mum|mom|dad|sister|brother)|watch (?:your|ur) back|(?:shoot|bomb|blow) up (?:the |ur |your |my )?school|dox ' + YOU + '|leak (?:your|ur) (?:address|face|info)'), cat: 'threat:real_world' },
+];
+const BULLY_RULES = [
+  { re: P(YOU + ' (?:are|r|re|is)? ?(?:so |such |really |an? |such an? )*(?:ugly|fat|stupid|dumb|worthless|trash|garbage|pathetic|loser|idiot|moron|disgusting|useless|freak|nobody|braindead)|(?:nobody|no one|noone) (?:likes|loves|cares about|wants) ' + YOU + '|every ?one hates ' + YOU + '|(?:go away|get lost|shut up),? (?:loser|idiot|freak|ugly)|' + YOU + ' (?:have|got) no friends|ugly (?:loser|freak)'), cat: 'bullying:insult' },
+];
+const SEXUAL_PHRASE_RULES = [
+  { re: P('(?:send|show) (?:me )?(?:ur |your |a )?(?:nudes|noods|nude|body|feet pics)|(?:wanna|want to|will u|will you) (?:be my )?(?:date|gf|bf|girlfriend|boyfriend)|be my (?:gf|bf|girlfriend|boyfriend)|online dating|(?:take|takes) (?:of|off) (?:ur|your) (?:clothes|shirt)|(?:are|r) ' + YOU + ' (?:a )?virgin'), cat: 'sexual:solicitation' },
+];
+const SCAM_RULES = [
+  { re: P('(?:fre|free) (?:robux|rbx|bux|limiteds?|korblox|headless)|robux (?:generator|gen|hack|giveaway|for fre|for free|glitch)|(?:get|claim|win) (?:fre |free )?robux (?:at|on|here|now)|(?:double|dupe) (?:your|ur) robux|rbx ?(?:gg|land|demon)'), cat: 'scam:free_robux' },
+  { re: P('(?:give|send|tel|tell|dm|text|type|show) (?:me )?(?:your|ur|ya) (?:pasword|password|pass|pw|login|log in|cookie|roblosecurity|code|2fa|2fa code|verification code|pin|acount|account)|(?:whats|what is|wats|wat is|what s) (?:your|ur|ya) (?:pasword|password|pass|pw|pin|login|2fa)|roblosecurity|security cookie|log ?in (?:here|at|with) (?:this|my) (?:link|site)|verify (?:your|ur) (?:acount|account) (?:at|here|on)|i need (?:your|ur) (?:pasword|password|pass|login)'), cat: 'scam:account_phishing' },
+];
+const PII_REQUEST_RULES = [
+  { re: P('(?:how old (?:are|r|re) ' + YOU + ')|(?:whats|what is|wats|what s) (?:your|ur) (?:age|address|adress|number|phone|phone number|real name|full name|last name|school|suburb|city|postcode|email|birthday|bday)|where (?:do|d|does) ' + YOU + ' live|where (?:are|r) ' + YOU + ' from|what (?:school|city|suburb|state|street) (?:do|d|are|r) ' + YOU + '|(?:send|give) (?:me )?(?:your|ur) (?:number|address|adress|email|location|addy)|asl'), cat: 'personal_info:request' },
+];
+const GROOM_RULES = [
+  { re: P('how old (?:are|r|re) ' + YOU + '|(?:whats|what is) (?:your|ur) age|asl|(?:are|r) ' + YOU + ' (?:a )?(?:boy|girl)|what grade (?:are|r) ' + YOU), cat: 'asks_age' },
+  { re: P('where (?:do|d) ' + YOU + ' live|where (?:are|r) ' + YOU + ' from|what (?:school|city|suburb|state) |(?:whats|what is) (?:your|ur) (?:address|adress|school|suburb|city)'), cat: 'asks_location' },
+  { re: P('(?:dont|do not|dnt) tel (?:your|ur|ya|anyone|any one|ne1|nobody)|(?:our|a) (?:little )?secret|keep (?:this|it) (?:between us|secret|a secret)|delete (?:this|the|our) (?:chat|messages|msgs)|(?:your|ur) (?:parents|mum|mom|dad) (?:dont|wont|do not|will not) (?:need to )?know|just between us'), cat: 'secrecy' },
+  { re: P('(?:il|i wil|i can|i could|ima|i will) (?:give|gift|buy|send|get) (?:you|u|ya) (?:some |a )?(?:robux|rbx|bux|gift card|gift|present|stuff|items|limiteds?|money|premium|vbucks)|(?:want|wanna|need) (?:some |fre |free )?robux|gift card|fre robux if|free robux if'), cat: 'gift_offer' },
+  { re: P('(?:send|show) (?:me )?(?:a )?(?:pic|pics|picture|photo|selfie|face)|what do ' + YOU + ' look like|(?:turn on|use) (?:ur |your )?(?:cam|camera)'), cat: 'asks_photo' },
+  { re: P('meet (?:up|irl|in real life|in person|me)|come (?:over|to my house)|(?:il|i wil|i can) pick ' + YOU + ' up'), cat: 'meet_up' },
+  { re: P('(?:youre|ur|your|you are|u r) (?:so |really )?mature(?: for (?:your|ur) age)?|(?:youre|ur|you are) (?:my )?special|(?:only|nobody but) i (?:understand|get) ' + YOU), cat: 'flattery_trust' },
+];
+const NUMWORDS = { zero: '0', oh: '0', one: '1', two: '2', three: '3', four: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '9', niner: '9', won: null };
+function numericGroups(text) {
+  const units = []; const re = /\d|[A-Za-z]+/g; let m; let mult = 1;
+  while ((m = re.exec(text))) {
+    const w = m[0].toLowerCase();
+    if (/^\d$/.test(w)) { units.push({ d: w.repeat(mult), start: m.index, end: m.index + 1, digit: true }); mult = 1; }
+    else if (w === 'double' || w === 'triple') { mult = w === 'double' ? 2 : 3; units.push({ d: '', start: m.index, end: m.index + w.length, mult: true }); }
+    else if (NUMWORDS[w] && !(w === 'oh' && !units.length)) { units.push({ d: NUMWORDS[w].repeat(mult), start: m.index, end: m.index + w.length, digit: false }); mult = 1; }
+    else { units.push({ d: null, start: m.index, end: m.index + w.length }); mult = 1; }
+  }
+  const groups = []; let cur = null;
+  for (const u of units) {
+    if (u.d === null) { if (cur) groups.push(cur); cur = null; continue; }
+    if (cur && /^[\s\-.()+]*$/.test(text.slice(cur.end, u.start))) { cur.digits += u.d; cur.end = u.end; cur.spelled = cur.spelled || u.digit === false; }
+    else { if (cur) groups.push(cur); cur = { digits: u.d, start: u.start, end: u.end, spelled: u.digit === false }; }
+  }
+  if (cur) groups.push(cur);
+  return groups.filter(g => g.digits.length > 0 && !(g.spelled && g.digits.length < 3 && !/\d/.test(text.slice(g.start, g.end))));
+}
+const AGEWORD = '(?:\\d{1,2}|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen)';
+const STREET = '(?:street|st|road|rd|avenue|ave|drive|dr|lane|ln|court|ct|crescent|cres|place|pl|way|boulevard|blvd|parade|pde|close|cl|terrace|tce|highway|hwy|grove|gr|circuit|cct)';
+const PII_REGEX = [
+  { re: /[A-Za-z0-9._%+-]+\s*(?:@|\(at\)|\[at\]|\s+at\s+)\s*[A-Za-z0-9-]+\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*(?:com|net|org|edu|gov|au|co|io|me|uk)\b(?:\s*(?:\.|\s+dot\s+)\s*[a-z]{2,3}\b)?/gi, cat: 'personal_info:email' },
+  { re: /\b[A-Za-z0-9._]+\s*(?:@|\s+at\s+)\s*(?:gmail|hotmail|outlook|yahoo|icloud|live|bigpond|optusnet|proton(?:mail)?)\b/gi, cat: 'personal_info:email' },
+  { re: new RegExp('\\b\\d{1,5}[a-z]?\\s+(?:[A-Za-z]+\\s+){1,3}' + STREET + '\\b\\.?', 'gi'), cat: 'personal_info:address' },
+  { re: /\bi\s+live\s+(?:at|on|in|near|next to|around)\s+[A-Za-z0-9' ]{2,40}/gi, cat: 'personal_info:location' },
+  { re: /\b(?:my|our)\s+(?:suburb|town|postcode|post code|zip|zip code|address|street)\s+(?:is\s+)?[A-Za-z0-9' ]{2,30}/gi, cat: 'personal_info:location' },
+  { re: /\b(?:[A-Z][a-z]+\s+){1,3}(?:High|Primary|Public|Grammar|College|Academy|Elementary|Middle|PS|HS|SC)(?:\s+School)?\b/g, cat: 'personal_info:school' },
+  { re: /\b(?!(?:i|my|in|at|to|go|the|our|your|ur|of|a|hate|love|like|from|after|before|for|public|this|that|and|middle|high|primary|new|old)\s)[a-z]+\s+(?:high school|primary school|public school|grammar school|elementary school|middle school|grammar|college|academy)\b/gi, cat: 'personal_info:school' },
+  { re: /\b(?:i\s+go\s+to|i\s+attend|my\s+school\s+is|i'?m\s+at)\s+[A-Za-z'. ]{2,30}?\s*(?:school|high|primary|ps|hs|college|grammar|academy)\b/gi, cat: 'personal_info:school' },
+  { re: /\bmy\s+(?:real\s+|full\s+|actual\s+|irl\s+|last\s+)?name(?:'s|\s+is|\s*=)\s+[A-Za-z]+(?:\s+[A-Za-z]+)?/gi, cat: 'personal_info:real_name', needs: (m) => /\b(?:real|full|actual|irl|last)\b/i.test(m) || /(?:is|=|'s)\s+[A-Za-z]+\s+[A-Za-z]+$/i.test(m) },
+  { re: /\bmy\s+(?:last|sur)\s*name\b/gi, cat: 'personal_info:real_name' },
+  { re: new RegExp('\\b(?:' + W.FIRST_NAMES.map(n => n[0].toUpperCase() + n.slice(1)).join('|') + ')\\s+[A-Z][a-z]{2,}\\b', 'g'), cat: 'personal_info:real_name' },
+  { re: new RegExp("\\b(?:i'?m|i\\s+am|im|me)\\s+" + AGEWORD + "(?:\\s*(?:years?\\s*old|yrs?(?:\\s*old)?|yo|y/o)|(?=\\s*(?:$|[.!?,]|and\\b|lol\\b|btw\\b|rn\\b|too\\b|now\\b)))", 'gi'), cat: 'personal_info:age' },
+  { re: new RegExp('\\b' + AGEWORD + '\\s*(?:years?\\s*old|yrs?\\s*old|yo|y/o)\\b', 'gi'), cat: 'personal_info:age' },
+  { re: new RegExp("\\b(?:my\\s+age\\s+is|age\\s*[:=]?|turning|i\\s+turn|i'?ll\\s+be)\\s+" + AGEWORD + '\\b', 'gi'), cat: 'personal_info:age' },
+  { re: /\b(?:my\s+)?(?:birthday|bday|b-day|dob)\s+(?:is|=|:)?\s*\S+(?:\s+\S+)?/gi, cat: 'personal_info:birthday' },
+  { re: /\bborn\s+(?:on|in)\s+\S+(?:\s+\S+)?/gi, cat: 'personal_info:birthday' },
+  { re: /\b\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}\b/g, cat: 'personal_info:birthday_or_date' },
+  { re: /\b(?:nsw|vic|qld|wa|sa|tas|act|nt)\s*\d{4}\b/gi, cat: 'personal_info:location' },
+];
+const CITY_RE = new RegExp('\\b(?:' + W.CITIES.map(c => c.replace(/ /g, '\\s+')).join('|') + ')\\b', 'gi');
+const STATE_CUE_RE = new RegExp('\\b(?:live|from|in)\\s+(?:' + W.STATES.map(c => c.replace(/ /g, '\\s+')).join('|') + ')\\b', 'gi');
+const LINK_RE = [
+  /\b(?:https?:\/\/|www\s*\.)\S+/gi,
+  /\b[a-z0-9-]{2,}\s*(?:\.|\s+dot\s+|\(dot\)|\[dot\])\s*(?:com|net|org|gg|io|co|me|ly|tv|xyz|au|uk|ru|cc|app|link|site)\b(?:\s*\/\s*\S+)?/gi,
+];
+const HANDLE_RE = [/(?:^|\s)@[A-Za-z0-9_.]{4,}/g, /\b[A-Za-z0-9_.]{2,}#\d{4}\b/g];
+const APP_FULL = W.OFF_PLATFORM_APPS.map(a => collapse(a)).join('|');
+const APP_ALIAS = W.OFF_PLATFORM_ALIASES.map(a => collapse(a)).join('|');
+const OFF_RULES = [
+  { re: P('(?:' + APP_FULL + ')(?:s|me)?'), cat: 'off_platform:app_mention' },
+  { re: P('(?:add|dm|msg|message|text|hmu|hit me up|follow|find|cal|call|chat|talk|friend|vc) (?:me |w me |with me )?(?:on|at|in|thru|through|over) (?:' + APP_FULL + '|' + APP_ALIAS + ')'), cat: 'off_platform:add_me_on' },
+  { re: P('(?:my|ur|your|whats your|whats ur|what is your|got|have|u got|you got|do u have|do you have) (?:' + APP_ALIAS + ')(?: is| name| user| username| handle| tag| acc| account| @)?'), cat: 'off_platform:handle_request' },
+  { re: P('(?:snap|sc|insta|ig|text|cal) me'), cat: 'off_platform:add_me_on' },
+  { re: P('(?:lets|let s|we should|can we|wanna|want to) (?:move|go|switch|talk|chat|vc) (?:to|on) (?:another|a diferent|a different|other|an other|a better|' + APP_FULL + '|' + APP_ALIAS + ')(?: app| platform| site)?'), cat: 'off_platform:move_app' },
+];
+function detect(text, band) {
+  const toks = tokenize(text);
+  const variants = phraseUnitsVariants(text, toks);
+  const spans = [];
+  findWordHits(text, toks).forEach(h => spans.push(h));
+  for (const rs of [SELF_HARM_RULES, THREAT_RULES, BULLY_RULES, SEXUAL_PHRASE_RULES, SCAM_RULES, PII_REQUEST_RULES, OFF_RULES]) phraseHits(variants, rs).forEach(h => spans.push(h));
+  for (const r of PII_REGEX) {
+    r.re.lastIndex = 0; let m;
+    while ((m = r.re.exec(text))) { if (!r.needs || r.needs(m[0])) spans.push({ start: m.index, end: m.index + m[0].length, cat: r.cat }); if (!m[0].length) r.re.lastIndex++; }
+  }
+  for (const re of [CITY_RE, STATE_CUE_RE]) { re.lastIndex = 0; let m; while ((m = re.exec(text))) spans.push({ start: m.index, end: m.index + m[0].length, cat: 'personal_info:location' }); }
+  for (const re of LINK_RE) { re.lastIndex = 0; let m; while ((m = re.exec(text))) spans.push({ start: m.index, end: m.index + m[0].length, cat: 'off_platform:link' }); }
+  for (const re of HANDLE_RE) { re.lastIndex = 0; let m; while ((m = re.exec(text))) { const s = m.index + (m[0].length - m[0].trimStart().length); spans.push({ start: s, end: m.index + m[0].length, cat: 'off_platform:handle' }); } }
+  const groups = numericGroups(text);
+  const dateSpans = spans.filter(s => s.cat === 'personal_info:birthday_or_date');
+  for (const g of groups) {
+    if (dateSpans.some(d => d.start <= g.start && d.end >= g.end)) continue;
+    if (g.digits.length >= 7) spans.push({ start: g.start, end: g.end, cat: 'personal_info:phone_number' });
+    else if (g.digits.length >= 5) spans.push({ start: g.start, end: g.end, cat: 'personal_info:long_digit_run' });
+    else if (band === 'u13' && /\d{3,}/.test(text.slice(g.start, g.end).replace(/\D/g, ''))) {
+      spans.push({ start: g.start, end: g.end, cat: 'numbers:u13_strict' });
+    }
+  }
+  for (const h of spans.filter(s => s.tier === 'strong' && s.idx && s.idx.length)) {
+    const a = Math.min(...h.idx), b = Math.max(...h.idx);
+    const near = [toks[a - 1], toks[a - 2], toks[b + 1], toks[b + 2]].filter(Boolean).map(t => collapse(decodeTok(t.raw)));
+    if (near.some(w => /^(?:you|u|ya|yu|ur|youre|your|yourself|urself|him|her|them)$/.test(w))) spans.push({ start: h.start, end: h.end, cat: 'bullying:directed_profanity' });
+  }
+  return { spans, toks, groups, variants };
+}
+function groomSignals(texts) {
+  const sig = new Set();
+  for (const t of texts) {
+    const toks = tokenize(t); const v = phraseUnitsVariants(t, toks);
+    phraseHits(v, GROOM_RULES).forEach(h => sig.add(h.cat));
+    if (phraseHits(v, OFF_RULES).length || LINK_RE.some(re => { re.lastIndex = 0; return re.test(t); })) sig.add('move_to_other_app');
+  }
+  return [...sig];
+}
+const CLASS_OF = (cat) => {
+  if (cat === 'scam:account_phishing') return 'block';
+  if (cat.startsWith('personal_info:') || cat.startsWith('off_platform:')) return 'block';
+  if (cat.startsWith('profanity:')) return 'profanity';
+  return 'hash'; // hate, sexual, threat, bullying, self_harm, scam:free_robux, numbers:u13_strict
+};
+function hashSpans(text, spans) {
+  const a = [...text];
+  const chars = text.split('');
+  for (const s of spans) for (let i = s.start; i < s.end; i++) if (!/\s/.test(chars[i])) chars[i] = '#';
+  void a;
+  return chars.join('').replace(/#[\uDC00-\uDFFF]/g, '#');
+}
+function rephrase(text, spans) {
+  const sorted = [...spans].sort((x, y) => y.start - x.start);
+  let t = text;
+  for (const s of sorted) {
+    let start = s.start;
+    const before = t.slice(0, start), after = t.slice(s.end);
+    const m = before.match(/\b(?:the|a|an|so|such|da)\s+$/i);
+    if (m && /^\s*(?:[.!?,]|$)/.test(after)) start -= m[0].length;
+    t = t.slice(0, start) + t.slice(s.end);
+  }
+  return t.replace(/\s{2,}/g, ' ').replace(/\s+([.!?,])/g, '$1').replace(/^[\s,.]+/, '').trim();
+}
+function decodedView(toks, spans) {
+  const out = [];
+  let last = null;
+  toks.forEach(tk => {
+    const sp = spans.find(s => s.start < tk.end && s.end > tk.start);
+    if (sp) { const lab = '[' + sp.cat + ']'; if (lab !== last) out.push(lab); last = lab; }
+    else { const d = decodeTok(tk.raw); if (d) out.push(d); last = null; }
+  });
+  return out.join(' ');
+}
+function filterMessage(text, opts) {
+  if (typeof opts === 'string') opts = { band: opts };
+  opts = opts || {};
+  text = String(text == null ? '' : text);
+  const band = normBand(opts.band || opts.ageBand);
+  let mode = (opts.mode === 'trusted') ? 'trusted' : 'public';
+  const history = Array.isArray(opts.history) ? opts.history.slice(-HISTORY_WINDOW).map(String) : [];
+  const notes = [];
+  if (mode === 'trusted' && band === 'u13') {
+    notes.push('Under-13 accounts cannot use chat with fewer filters, even with trusted friends; standard filters applied.');
+    mode = 'public';
+  }
+  const det = detect(text, band);
+  let spans = det.spans;
+  if (history.length) {
+    const msgs = history.concat([text]);
+    let total = 0, chain = 0;
+    for (let i = msgs.length - 1; i >= 0; i--) {
+      const g = numericGroups(msgs[i]); const d = g.reduce((n, x) => n + x.digits.length, 0);
+      const nonDigit = msgs[i].replace(/\d|\s|[-.()+]/g, '').replace(/\b(?:zero|oh|one|two|three|four|five|six|seven|eight|nine|double|triple)\b/gi, '').length;
+      if (d === 0 || (nonDigit > 12 && d < 3)) break;
+      total += d; chain++;
+    }
+    const curDigits = numericGroups(text).reduce((n, x) => n + x.digits.length, 0);
+    if (chain >= 2 && curDigits > 0 && curDigits < 7 && total >= 7) spans.push({ start: 0, end: text.length, cat: 'personal_info:phone_split_across_messages' });
+    const joined = msgs.join(' '); const off = joined.length - text.length;
+    const jd = detect(joined, band);
+    for (const s of jd.spans) {
+      if (s.start < off && s.end > off && (s.cat.startsWith('personal_info:') || s.cat.startsWith('off_platform:')) && !spans.some(x => x.cat === s.cat || (s.cat === 'personal_info:phone_number' && x.cat === 'personal_info:phone_split_across_messages'))) {
+        spans.push({ start: 0, end: text.length, cat: s.cat + '_across_messages' });
+      }
+    }
+  }
+  let relaxedPII = false;
+  if (mode === 'trusted') {
+    const before = spans.length;
+    spans = spans.filter(s => !(s.cat.startsWith('personal_info:')));
+    relaxedPII = spans.length !== before;
+    if (relaxedPII) notes.push('Personal info is relaxed in trusted mode per REPORTED behaviour (unverified; a Roblox source says personal info is still blocked). Roblox advises against sharing it.');
+  }
+  const cats = [...new Set(spans.map(s => s.cat))].sort();
+  const classes = new Set(cats.map(CLASS_OF));
+  const profanityAllowed = mode === 'trusted' || (band === '18+' && !!opts.strongLanguage);
+  let outcome, displayed;
+  const profSpans = spans.filter(s => CLASS_OF(s.cat) === 'profanity');
+  if (classes.has('block')) {
+    outcome = 'blocked_not_sent';
+    displayed = text.replace(/\S/g, '#');
+    notes.push('Message not sent. The sender sees it as #### with a warning; the recipient sees nothing.');
+  } else if (classes.has('hash')) {
+    outcome = 'hashed';
+    const hs = spans.filter(s => CLASS_OF(s.cat) === 'hash' || (!profanityAllowed && CLASS_OF(s.cat) === 'profanity'));
+    displayed = hashSpans(text, hs);
+  } else if (classes.has('profanity') && !profanityAllowed) {
+    const cleaned = rephrase(text, profSpans);
+    if (/[a-z0-9]/i.test(cleaned)) {
+      outcome = 'rephrased'; displayed = cleaned;
+      notes.push('Roblox AI rephrasing (since 5 Mar 2026): everyone in chat is told the message was rephrased. Our rewrite only removes the flagged words; Roblox\'s AI may reword differently.');
+    } else { outcome = 'hashed'; displayed = hashSpans(text, profSpans); notes.push('Nothing left after removing profanity, so it is shown as hashes.'); }
+  } else {
+    outcome = 'allowed'; displayed = text;
+    if (classes.has('profanity')) notes.push(mode === 'trusted' ? 'Swearing is allowed in trusted chat with fewer filters (13+).' : 'Strong language is allowed in this 18+ experience setting.');
+  }
+  if (cats.some(c => c.startsWith('self_harm:'))) {
+    notes.push('HIGH SEVERITY: self-harm content. Roblox treats this as serious and may act on the account. If your child is involved, talk with them; in Australia, Kids Helpline is 1800 55 1800 and Lifeline is 13 11 14.');
+  }
+  if (cats.includes('threat:real_world')) notes.push('HIGH SEVERITY: real-world threat. Report it in Roblox, and to police if there is any danger.');
+  if (band === '13-17' && mode === 'public') notes.push('REPORTED (Research Bot, unverified): 13-17 public chat uses the same filter as under-13. The extra under-13 number rule here comes from a 2022 Roblox page.');
+  const signals = groomSignals(history.concat([text]));
+  const grooming_flag = { flagged: signals.length > 0, level: signals.length >= 2 ? 'high' : signals.length ? 'watch' : 'none', signals };
+  if (grooming_flag.level === 'high') notes.push('Grooming-pattern warning: several risk signals across recent messages (Sentinel-style heuristic; REPORTED and GUESS).');
+  const robloxVerdict = {
+    allowed: 'Likely shown as typed.',
+    rephrased: 'Likely shown with the swearing removed by Roblox\'s AI rephraser.',
+    hashed: 'Likely shown with the flagged words as ####.',
+    blocked_not_sent: 'Likely blocked: the sender sees ####, the recipient sees nothing.',
+  }[outcome] + ' [band ' + band + ', ' + mode + ' chat]';
+  return { outcome, displayed, categories: cats, decoded: decodedView(det.toks, spans.filter(s => s.start < text.length)), robloxVerdict, grooming_flag, notes };
+}
+return { filterMessage, normBand };
+})()
+/*ENGINE-END*/
+;
+</script>
+<script>
+(function(){
+  var input=document.getElementById('in'), out=document.getElementById('out');
+  function project(text){
+    if(!text) return '';
+    var r=window.ENGINE.filterMessage(text,{band:'18+',mode:'public',history:[],strongLanguage:true});
+    if(r.outcome==='blocked_not_sent') return '#### (blocked, not sent)';
+    if(r.outcome==='rephrased') return r.displayed+' (rephrased)';
+    return r.displayed;
+  }
+  function update(){ out.textContent=project(input.value); }
+  input.addEventListener('input',update);
+  update();
+})();
+</script>
+</body>
+</html>
